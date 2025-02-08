@@ -1,8 +1,42 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿se co@model WebAppFormMVC.Models.ContactMessage
+
+@{
+    ViewData["Title"] = "Formulario de Contacto";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<h2> Formulario de Contacto</h2>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+
+    </div>
+}
+
+<form asp-action="Submit" method="post">
+    <div>
+        <label> Nombre</label>
+        <input asp-for="Nombre" class="form-control" />
+        <span asp-validation-for="Nombre" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label> Correo Electronico </label>
+        <input asp-for="Correo" class="form-control" />
+        <span asp-validation-for="Correo" class="text-danger"></span>
+
+    </div>
+
+    <div>
+        <label> Mensaje </label>
+        <input asp-for="Mensaje" class="form-control" />
+        <span asp-validation-for="Mensaje" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary"> Enviar </button>
+</form>
+
+@section Scripts {
+            <partial name = "_ValidationScriptsPartial"/>
+}
